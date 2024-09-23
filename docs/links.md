@@ -1,5 +1,9 @@
 Here we provide some additional links
 
+## CRAN's Introduction to R book
+
+[https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf)
+
 ## Some tutorials to learn or practice R
 
 [https://support.posit.co/hc/en-us/articles/200552336-Getting-Help-with-R](https://support.posit.co/hc/en-us/articles/200552336-Getting-Help-with-R)

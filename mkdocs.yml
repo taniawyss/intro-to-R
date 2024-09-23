@@ -1,4 +1,4 @@
-site_name: First steps with R
+site_name: Introduction to R for Life Sciences
 nav:
     - Home: index.md
     - Precourse preparations: precourse.md

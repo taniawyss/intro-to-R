@@ -32,4 +32,4 @@ This will generate a webpage at:
 
 https://yourname.github.io/reponame
 
-Therefore, this website is available on: https://sib-swiss.github.io/enrichment-analysis-training/
+Therefore, this website is available on: https://taniawyss.github.io/intro-to-R/
