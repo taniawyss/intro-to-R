@@ -18,7 +18,7 @@
     
     
       
-        <title>First steps with R</title>
+        <title>Introduction to R for Life Sciences</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#overview" class="md-skip">
+        <a href="#home" class="md-skip">
           Skip to content
         </a>
       
@@ -78,7 +78,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="First steps with R" class="md-header__button md-logo" aria-label="First steps with R" data-md-component="logo">
+    <a href="." title="Introduction to R for Life Sciences" class="md-header__button md-logo" aria-label="Introduction to R for Life Sciences" data-md-component="logo">
       
   <img src="assets/images/TDS_logo.svg" alt="logo">
 
@@ -91,7 +91,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            First steps with R
+            Introduction to R for Life Sciences
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -184,12 +184,12 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="First steps with R" class="md-nav__button md-logo" aria-label="First steps with R" data-md-component="logo">
+    <a href="." title="Introduction to R for Life Sciences" class="md-nav__button md-logo" aria-label="Introduction to R for Life Sciences" data-md-component="logo">
       
   <img src="assets/images/TDS_logo.svg" alt="logo">
 
     </a>
-    First steps with R
+    Introduction to R for Life Sciences
   </label>
   
     <div class="md-nav__source">
@@ -219,6 +219,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -247,6 +249,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -255,27 +259,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#learning-outcomes" class="md-nav__link">
     <span class="md-ellipsis">
       Learning outcomes
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      Exercises
     </span>
   </a>
   
@@ -435,6 +421,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -443,27 +431,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      Overview
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#learning-outcomes" class="md-nav__link">
     <span class="md-ellipsis">
       Learning outcomes
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exercises" class="md-nav__link">
-    <span class="md-ellipsis">
-      Exercises
     </span>
   </a>
   
@@ -496,33 +466,13 @@
   
 
 
-  <h1>Home</h1>
-
-<h2 id="overview">Overview</h2>
-<p>Experiments designed to quantify gene expression often yield hundreds of genes that show statistically significant differences between two classes (two biological states, two phenotype states, two experimental conditions, etc). 
-Once differentially expressed genes are identified, enrichment analysis (EA) methods can be conducted to identify groups of genes (e.g. particular pathways) that are differentially expressed, and offer insights into biological mechanisms. 
-One example of such a method is the Gene Set Enrichment Analysis (GSEA), which is frequently used for high-throughput gene expression data analysis.</p>
-<p>This course will cover GSEA and alternative enrichment tools. Because most of their implementations are directly linked to databases that annotate the function of genes in the cell, the course will also give an overview of functional annotation databases such as the Gene Ontology.</p>
+<h1 id="home">Home</h1>
+<p>Life scientists often use commercial software such as Prism for data analysis. These tools are useful for initial and basic analysis, but do not allow for more advanced or flexible analyses, nor for the analysis of omics data, neither for the establishment of pipelines and reports. On the other hand, R is statistical software that allows for very flexible analysis, customizable pipeline creation and generation of reports.</p>
+<p>The “Introduction to R for Life Sciences” training that is designed for beginners and will provide hands-on practical sessions with R and RStudio. Participants will receive example data and R commands to learn how to navigate the R environment, import and explore data, and generate graphs and reports. The example data will reflect the types generated through high-throughput sequencing.</p>
+<p>This course is proposed by the <a href="https://agora-cancer.ch/scientific-platforms/translational-data-science-facility/">Translational Data Science Facility</a> of the SIB Swiss Institute of Bioinformatics in Lausanne, and taught by João Lourenço and Tania Wyss.</p>
 <h2 id="learning-outcomes">Learning outcomes</h2>
-<p>At the end of the course, the participants will be able to:</p>
-<ol>
-<li>Distinguish available enrichment analysis methods</li>
-<li>Apply GSEA and over-representation analysis using R</li>
-<li>Determine whether the genes of a GO term have a statistically significant difference in expression or not</li>
-<li>Learn where to find other gene sets in databases (e.g. KEGG, oncogenic gene sets) and use them in R</li>
-</ol>
-<h2 id="exercises">Exercises</h2>
-<p>The course is divided into small blocks, each with a lecture and relevant practical exercises. We will comment the practical exercises at the end of each block.</p>
 <h2 id="asking-questions">Asking questions</h2>
-<p>During lectures, you are encouraged to ask questions. Just unmute yourself and ask your questions or use the Zoom functionality. Find the buttons in the participants list (&lsquo;Participants&rsquo; button):</p>
-<figure>
-  <img src="assets/images/zoom_icons.png" width="300"/>
-</figure>
-
-<p>Alternatively, (depending on your zoom version or OS) use the &lsquo;Reactions&rsquo; button:</p>
-<figure>
-  <img src="assets/images/reactions_zoom.png" width="200"/>
-</figure>
+<p>During lectures, you are encouraged to ask questions !</p>
 
 
 
