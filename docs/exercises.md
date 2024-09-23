@@ -114,11 +114,8 @@ install.packages("BiocManager")
 
 # Then use the install() function from the BiocManager package
 # !! This takes time to complete, run it during coffee or lunch break!
-# Install flowCore:
-BiocManager::install("flowCore")
-
-# Install ggcyto:
-BiocManager::install("ggcyto")
+# Install DESeq2:
+BiocManager::install("DESeq2")
 
 ```
 
@@ -129,22 +126,20 @@ It is good practice to load all needed packages at the top of a script.
 # My Script
 
 library(limma)  
-library(DESeq2)  
 library(MASS)  
 library(ggplot2)
 
-# Here my data analysis begins
 ```
 
 If you run the above code, what is the output on the Console? What does it mean?
 
 ??? done "Answer"
-  	Packages such as limma or DESeq2 are not installed as base packages. They are hosted on Bioconductor and provide functions for RNAseq or microarray data analysis. The error message indicates that these packages were not installed and need to be installed before being able to load them.
+  	Packages such as limma are not installed as base packages. They are hosted on Bioconductor and provide functions for RNAseq or microarray data analysis. The error message indicates that these packages were not installed and need to be installed before being able to load them.
 
 
 ## R version and session information
 
-R is constantly upgraded by developers, which release a new version of R about every 6 months. Along with R upgrades, packages also get upgrades. From one version to the other of a package, it may happen that the default parameters of functions change. Therefore, it is important to always have in mind which current version of R and packages have been used for any analysis. Print the current R version and versions of attached or loaded packages using:
+R is constantly upgraded by developers, who release a new version of R about every 6 months. Along with R upgrades, packages also get upgrades. From one version to the other of a package, it may happen that the default parameters of functions change. Therefore, it is important to always have in mind which current version of R and packages have been used for any analysis. Print the current R version and versions of attached or loaded packages using:
 
 ```r
 # Prints the currently used R version
