@@ -1,0 +1,40 @@
+site_name: First steps with R
+nav:
+    - Home: index.md
+    - Precourse preparations: precourse.md
+    - Course schedule: course_schedule.md
+    - Materials: materials.md
+    - Exercises: exercises.md
+    - Bonus code: bonus_code.md
+    - Useful links: links.md
+
+theme:
+  name: material
+  logo: assets/images/TDS_logo.svg
+  favicon: assets/images/TDS_logo.svg
+
+# Repository
+repo_name: taniawyss/intro-to-R
+repo_url: https://github.com/taniawyss/intro-to-R
+
+markdown_extensions:
+  - abbr
+  - def_list
+  - footnotes
+  - tables
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - sane_lists
+  - smarty
+  - toc
+  - pymdownx.superfences
+  - attr_list
+  - pymdownx.tabbed
+  - pymdownx.details
+#  - pymdownx.emoji:
+#      emoji_index: !!python/name:materialx.emoji.twemoji
+#      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+extra_css:
+  - stylesheets/extra.css
