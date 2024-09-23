@@ -11,7 +11,7 @@ In this section, you will find the R code that we will use during the course. We
 Four windows are displayed by default within RStudio. One of the windows corresponds to the R console.
 
 <figure>
-  <img src="../../assets/images/Rstudio.png" width="800"/>
+  <img src="../assets/images/Rstudio.png" width="800"/>
 </figure>
 
 
