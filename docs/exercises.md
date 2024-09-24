@@ -20,7 +20,7 @@ Type the following commands within the console (bottom left window in RStudio) a
 ```r
 1 + 1
 ```
-The first command (1 + 1) prints "2" in the console. 
+The first command (1 + 1) prints "2" in the console. There you can see that R can also simply be used as a calculator. 
 ```r
 x	<- 128.5
 ```
@@ -36,7 +36,7 @@ The fourth command, with the use of the abs() function, prints the absolute valu
 ```r
 ?p.adjust
 ```
-Finally, the fifth command opens the help page for the p.adjust function (bottom right "Help" window in RStudio).
+Finally, the fifth command opens the help page for the p.adjust function (bottom right "Help" window in RStudio). What does this function do?
 
 
 ## Working directory

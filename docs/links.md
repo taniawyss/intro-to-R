@@ -4,6 +4,28 @@ Here we provide some additional links
 
 [https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf)
 
+
+## SIB's First steps with R in Life Sciences - 2-day course
+
+[https://github.com/sib-swiss/first-steps-with-R-training/tree/master](https://github.com/sib-swiss/first-steps-with-R-training/tree/master)
+
+It includes more on statistics on the second day.
+
+
+## SIB's Introduction to Statistics with R - 3/4-day course
+
+For R beginners:
+
+[https://sib-swiss.github.io/Introduction-to-statistics-with-R/](https://sib-swiss.github.io/Introduction-to-statistics-with-R/)
+
+
+## Introduction to R for Cancer Scientists
+
+For R beginners:
+
+[https://bioinformatics-core-shared-training.github.io/r-intro/index.html](https://bioinformatics-core-shared-training.github.io/r-intro/index.html)
+
+
 ## Some tutorials to learn or practice R
 
 [https://support.posit.co/hc/en-us/articles/200552336-Getting-Help-with-R](https://support.posit.co/hc/en-us/articles/200552336-Getting-Help-with-R)
