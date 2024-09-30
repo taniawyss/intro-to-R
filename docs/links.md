@@ -48,6 +48,9 @@ You can also have a look at ggplot2's [vignette](https://cran.r-project.org/web/
 
 The [R Graphics Cookbook](https://r-graphics.org/) includes code to create graphs with both the base `graphics` package as well as `ggplot2`.
 
+Finally, this cheatsheet is also useful and gives a nice overview !
+
+[https://rstudio.github.io/cheatsheets/data-visualization.pdf](https://rstudio.github.io/cheatsheets/data-visualization.pdf)
 
 ## R-charts
 
@@ -57,9 +60,13 @@ A site that has been created to be a reference for learning how to create charts
 
 ## R colors
 
-A nice pdf file with R color names by Dr Ying Wei
+A nice PDF file with R color names by Dr Ying Wei
 
 [http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf)
+
+Another nice PDF file with information about R colors
+
+[https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf](https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf)
 
 ## R Markdown
 

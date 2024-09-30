@@ -1,6 +1,8 @@
 # Introduction to R for Life Sciences - Oct 2024
 # R v 4.3.3
 
+# This script contains some extra Bonus sections which you can 
+# explore on your own time. 
 
 ## ---- Exploring the R console:
 
@@ -60,8 +62,9 @@ h <- 0.5
 area <- w * h 
 area
 
-## Part 1 
-## Let's follow the script
+
+### Part 1
+## Let's follow the script !
 
 ## ---- R key concepts:
 
@@ -117,9 +120,13 @@ rm(list=ls())
 # To view the current working directory:
 getwd()
 
-# To set the current working directory to another location:
-setwd("/Users/tania/Documents/") # ! Change to the folder organization you have
-# on your computer!
+# To set the current working directory to another location, eg to where
+# you have saved the csv files we have provided for this course:
+setwd("/Users/tania/Dropbox/My Mac (pc-10.home)/Documents/BCF/courses/intro_to_R/intro-to-R/docs/assets/data/course_datasets/") 
+# ! Change to the folder organization you have on your computer!
+# If the location of your working directory should be different from where your 
+# script is saved, you need to set the working directory every time you close
+# and re-open R. 
 
 # Once you start using R to export files or figures in pdf for example, it is useful 
 # to set your working directory and then you can simply specify the output's file name
@@ -196,7 +203,7 @@ packageVersion("stringi")
 # 1 + 1 +
   
 
-# Part 2
+### Part 2
 ###################################
 # Basic Data Types and Structures #
 ###################################
@@ -245,17 +252,17 @@ levels(genotype)
 # within the DE analysis, so it has its importance!
 
 
-####################
 # Object name rules
 
-# Only use letters, numbers, dots . , and underscores _
+# To name objects, only use letters, numbers, dots . , and underscores _
 # Cannot start with a number !!! START WITH A LETTER !!!
 # Cannot contain operators
 # Cannot contain spaces
 5days <- 5
-# Error: unexpected input in "5_"
+# Error: unexpected input in "5days"
 
-#################
+
+
 # FUNCTIONS
 
 # Functions are called with their name followed by parentheses ()
@@ -306,13 +313,13 @@ x
 log(x,base = 2) # same as log2(x)
 
 
-#########################
-# MORE COMMON OBJECT CLASSES #
-#########################
+
+# More common object classes/types
 
 # Vector: a series of data, all of the same type
-# matrix: multiple columns of the same length and data type
-# data frame: multiple columns of the same length, but each with their data type
+# matrix: 2-dimensional, multiple columns of the same length and data type
+# data frame: 2-dimensional, multiple columns of the same length, but each can be
+#             of a different data type
 # list: collection of objects; can be of different classes and sizes
 # function: a command to perform a specific task
 
@@ -329,7 +336,7 @@ height <- c(Mia=180, Paul=167, Ed=199)
 names(height)
 # This is for example encountered when we run GSEA
 
-# Access elements within a vector with the square brackets [ ]:
+# Access elements of a vector with the square brackets [ ]:
 height[1] # get the first element
 height["Paul"] # get the element named Paul
 height[ c(1,3) ] # get the 1st and 3rd element
@@ -352,7 +359,7 @@ genotypes <- rep(x = c('WT','KO') , times = 3 )
 c(a,s) # c() can be used to concatenate 2 vectors
 
 # We can perform operations with vectors
-a*2 # Here we multiply each element of a by 2
+a*2 # Here we multiply each element of vector a by 2
 a + c(12,10,12,10) # add the elements of 2 vectors
 # Both have to be of the same length if they have multiple elements!
 
@@ -365,15 +372,14 @@ log2(a) # compute the logarithm in base 2 of eachelement
 mean(a) # compute the mean of the elements of a
 
 
-##########
+# Bonus section ----
 # COERCION
 
-# All elements of a vector must be the same type
+# All elements of a vector must be of the same type.
 # When combining different types, they are coerced to the most flexible type
 # Flexibility scale: logical < numeric < character
 vec <- c(2,TRUE) # coerces to numeric
 vec <- c(2,"twelve",TRUE) # coerces to character
-
 
 # Convert between types: as.logical() , as.numeric(), as.character()
 # Example: coerce a logical vector to numeric
@@ -381,6 +387,8 @@ x <- c(FALSE,FALSE,TRUE)
 as.numeric(x) # FALSE becomes 0, TRUE becomes 1
 sum(x) # mathematical functions automatically coerce to numeric
 mean(x) # proportion of TRUE
+
+# End of Bonus section ----
 
 
 ######################
@@ -391,8 +399,8 @@ mean(x) # proportion of TRUE
 # vector_a, containing the values from −5 to 5
 # vector_b, from 0 to 1 by increment of 0.1
 
-# Calculate the element-wise sum between the 
-# elements of vector_a and vector_b.
+# Calculate the element-wise sum between the elements of vector_a and vector_b.
+# For element-wise operations, both vectors have to be the same length!
 
 # Calculate the sum of elements in vector_a.
 # Hint: check out the help of the sum() function
@@ -412,8 +420,8 @@ mean(x) # proportion of TRUE
 vector_a <- -5:5
 vector_b <- seq(0,1,0.1)
 
-# Calculate the element-wise sum between the 
-# elements of vector_a and vector_b.
+# Calculate the element-wise sum between the elements of vector_a and vector_b.
+# For element-wise operations, both vectors have to be the same length!
 vector_a + vector_b
 
 # Calculate the sum of elements in vector_a.
@@ -446,11 +454,6 @@ c(1,3,2) != 2
 c(1,3,2) < 2
 # This tells me which of the vector's elements are smaller than 2 (i.e. TRUE)
 
-# Logical: ! (negation), & (and), | (or)
-!TRUE # ! Reverses TRUE and FALSE
-!(c(1,3,2) < 2) 
-c(1,3,2) < 3 & c(1,3,2) != 1
-
 # Other: %in%
 # Always returns logical values
 # This operator allows us to compare the elements of 2 vectors (they don't
@@ -458,6 +461,14 @@ c(1,3,2) < 3 & c(1,3,2) != 1
 # element of the first vector in the comparison
 c("Fred", "Marc", "Dan", "Ali") %in% c("Dan", "Geoff", "Ali")
 
+
+# Bonus section ----
+
+# Logical: ! (negation), & (and), | (or)
+!TRUE # ! Reverses TRUE and FALSE
+!(c(1,3,2) < 2) 
+c(1,3,2) < 3 & c(1,3,2) != 1
+# End of Bonus section ----
 
 
 ######################################
@@ -477,10 +488,10 @@ a[a>2] # the logical vector is provided by a logical expression
 # Missing values are usually represented by NA:
 y <- c(1,2,3,4,5,NA,NA)
 
-# NA's interfer with many functions:
+# NAs interfere with many functions:
 mean(y)
 
-# Arguments often exist to ignore the NA's before calculation
+# Arguments often exist to ignore the NAs before calculation
 mean(y, na.rm=TRUE)
 
 # Alternatively, use na.omit() to remove NAs from the data
@@ -490,12 +501,18 @@ mean(y_cleaned)
 ### !!! NA is different from NaN !!! 
 x <- c(1, NA, 0/0) # 0/0 gives NaN = "Not a Number"
 
-is.na(x) #detects both NAs and NaNs from x
+
+# Bonus section ----
+
+# There are functions to detect either NAs and/or NaNs within a vector:
+is.na(x) # detects both NAs and NaNs from x
 is.nan(x) # detects only NaNs from x
 x > 2 # what if we try to compare NA and NaN to a number?
 
 x_clean <- x[!is.na(x)] # removes NAs and NaNs from x
+x_clean <- na.omit(x) # equivalent to above
 
+# End of Bonus section ----
 
 
 
@@ -503,30 +520,75 @@ x_clean <- x[!is.na(x)] # removes NAs and NaNs from x
 # DATAFRAMES    #
 #################
 
+# A data frame (df) is a table or a two-dimensional structure in which each column 
+# contains values of one variable and each row contains one set of values from 
+# each column.
+# In biology, a data frame will contain variables measured in the
+# columns (eg patient ID, age, disease status, etc), and individual 
+# samples in the rows.
+
+# A data frame can either be created within R by combining vectors which will
+# become the columns, or by importing data from a csv file for example (see
+# later). 
 
 # We can create a dataframe from its individual column (each one is a vector)
-name <- c("Joyce", "Chaucer", "Homer") # creates the column "name"
-status <- c("dead", "deader", "deadest") # creates the column "status"
-reader_rating <- c(55, 22, 100) # creates the column "reader_rating"
+name <- c("Joyce", "Chaucer", "Homer") # creates the vector "name"
+status <- c("dead", "deader", "deadest") # creates the vector "status"
+reader_rating <- c(55, 22, 100) # creates the vector "reader_rating"
 
-poets <- data.frame(name, status, reader_rating) # creates the df
+# Here we use the data.frame function to create a data frame! Here you can 
+# see that a data frame is a two-dimensional combination of vectors.
+poets <- data.frame(name, status, reader_rating) # create the df
+class(poets)
+# [1] "data.frame"
+
+# Explore the data.frame by calling its name:
 poets
+# You will see in the console:
+#      name  status reader_rating
+# 1   Joyce    dead            55
+# 2 Chaucer  deader            22
+# 3   Homer deadest           100
 
 
 ##################################################
 # Accessing rows, columns, and individual elements 
 
+# We can use the square brackets with data frames similarly to their use with 
+# vectors. 
+# However, because data frames are 2-dimensional, we need to use a 
+# comma within the square brackets to specify either rows or columns.
+# The syntax is [rows , columns]
 
 poets[2,2] # gets the element on row 2 in column 2
-poets[,c(1,3)] # gets columns 1 and 3
-poets[,c("name", "reader_rating")] # gets columns "name" and
+poets[,c(1,3)] # using vectors, we get all rows of columns 1 and 3
+poets[,c("name", "reader_rating")] # using a vector of column names, we get
+# all rows of columns "name" and "reader_rating"
 
-# "reader_rating"
+# Another way to access a column by its name is to use the $ sign appended
+# to the df name:
 poets$name # gets column "name"
 
+# We can perform operations with the columns of a data frame, just like with 
+# regular vectors
+poets$reader_rating/2
+
+# Some of the  characteristics of a data frame are:
+# - The column names should be non-empty.
+# - The row names should be unique.
+# - The data stored in a data frame can be of numeric, factor or character type.
+# - Each column should contain the same number of data items (use NA if some
+#   data measurments are missing).
+# - A single column contains the same type of data (i.e. all numeric or all character)
+#   but the different columns across the df can contain different types of data
+#   e.g. one column can contain all numeric and another can contain all characters.
+
+# Functions exist to extract or set the row names and column names of a data frame:
 rownames(poets) # gets the row names
 colnames(poets) # gets the column names
 
+# We can set the row names by providing a vector that will replace
+# the current row names. The same can be done for column names.
 rownames(poets) <- c("J", "C", "H") # overwrites row names
 
 
@@ -534,29 +596,45 @@ rownames(poets) <- c("J", "C", "H") # overwrites row names
 # MATRICES      #
 #################
 
-
+# A matrix is also 2-dimensional, but all elements within the matrix are of the 
+# same data type (numeric, character, or logical).
 
 # Creating matrices using `matrix()` function. 
-my_matrix <- matrix(data = c(10,0,20,5,6,1), nrow = 2, ncol = 3)
+# The first argument is the collection of elements to arrange in the matrix, then
+# we specify the number of rows and columns (by default nrow=1 and ncol=1)
+# By default the matrix is filled by columns.
+my_matrix <- matrix(data = c(10, 0, 20, 5, 6, 1), nrow = 2, ncol = 3)
+
+# If you want to fill the matrix by row, change byrow=TRUE
+?matrix()
+my_matrix2 <- matrix(data = c(10, 0, 20, 5, 6, 1), nrow = 2, ncol = 3, byrow = T)
 
 # Add row and column names
 colnames(my_matrix) <- c("Sample_1","Sample_2","Sample_3") 
 rownames(my_matrix) <- c("EPCAM","PDGFRB") 
 my_matrix
 
-# Accessing rows, columns, and individual elements 
-# $ dosen't work
+# To accessing rows, columns, and individual elements, we can also use the 
+# square bracket syntax with matrices: 
+# [rows , columns]
 my_matrix[2,2] # gets the element on row 2 in column 2
-my_matrix[,c(1,3)] # gets columns 1 and 3
-my_matrix["EPCAM","Sample_2"]
+my_matrix[,c(1,3)] # gets all rows of columns 1 and 3
+my_matrix["EPCAM","Sample_2"] # using row names or column names
 
-# convert to / from a data frame
+# ! Unlike with data frames, $ dosen't work with matrices!
+# $ dosen't work
+my_matrix$Sample_1
+
+# Some R functions require the data to be formatted as a data frame, while 
+# others require the data to be formatted as a matrix. 
+# One can convert to / from a data frame:
 my_df <- as.data.frame(my_matrix)
+class(my_df)
 my_matrix <- as.matrix(my_df)
+class(my_matrix)
 
-
-
-
+# Bonus section ----
+# End of Bonus section ----
 
 
 
@@ -565,40 +643,55 @@ my_matrix <- as.matrix(my_df)
 ###################################
 
 ##########################
-# Import a table into a df
+# It is of course possible to import data that is located in a text file
+# external to R, and to create a data frame.
 
-# Most flexible function to read tabular data: read.table()
-# Reads a formatted text file and imports it as a data frame
+# One of the most flexible function to read tabular data: read.table()
+# Reads a table-formatted text file and imports it as a data frame.
 
-# Two main elements to give to read.table():
-# • What/where is the file to read
-# • What are the formatting options
+# Two main arguments to provide to the read.table():
+# - What is the name of the file and where is it stored in your computer
+# - What are the formatting options of the file to be read.
 
+?read.table
 
 # Most important optional arguments of read.table(), read.csv(), read.delim() :
 
-# header (TRUE/FALSE): specifies whether the first line contains column names
-# • Default in read.table() is FALSE.
-# • Default in read.csv()and read.delim()is TRUE.
+# header (TRUE/FALSE): specifies whether the first line in the file contains 
+# column names to be used for the data frame
+# - Default in read.table() is FALSE.
+# - Default in read.csv() and read.delim() is TRUE.
 
-# sep: specifies the field separator character (e.g. "," or tab "\t").
-# • Default in read.table() is any white space characters (space, tab, newline and carriage return).
-# • Default in read.csv()is comma.
-# • Default in read.delim()is tab.
+# sep: specifies the field separator character (e.g. "," or tab "\t"), i.e. how
+# the columns in the file to be imported are separated.
+# - Default in read.table() is any white space characters (space, tab, newline and carriage return).
+# - Default in read.csv() is comma (to import comma-separated values file)
+# - Default in read.delim() is tab ("\t")
 
 # Let's read a csv file
-clinical_data <- read.table("~/Documents/SIB/Teaching/Intro_to_R_for_Life_Sciences_Agora_03102024/course_datasets/example_clinical_data_03102024.csv",header=TRUE, sep=",") # all purpose function; we need to supply some arguments
-clinical_data <- read.csv("~/Documents/SIB/Teaching/Intro_to_R_for_Life_Sciences_Agora_03102024/course_datasets/example_clinical_data_03102024.csv") # arguments can be omitted since defaults are adapted to .csv
+# ! Check your working directory with getwd() and change the path to where you have saved the file!
+# Using the all purpose read.table() function, we need to specify some of the 
+# arguments to import a csv file.
+clinical_data <- read.table("example_clinical_data_03102024.csv",
+                            header=TRUE, sep=",") 
 
+# Of course, to import a csv file, we can use the read.csv() function
+# Except from the "file" argument, all other arguments can be omitted because
+# the defaults are adapted to .csv
+clinical_data <- read.csv("example_clinical_data_03102024.csv") 
 
 ############################
+
 # Checking the imported data
+# It is good practice to always check the format of the imported data frame! 
+# Are the column names correct? Do you obtain the expected number of 
+# rows and columns?
 
 # display first / last rows
 head(clinical_data) # shows first 6 rows 
 tail(clinical_data) # shows last 6 rows
 
-# what are the dimensions of the df
+# What are the dimensions of the df
 dim(clinical_data) # number of rows and columns
 nrow(clinical_data) # number of rows
 ncol(clinical_data) # number of columns
@@ -606,47 +699,95 @@ ncol(clinical_data) # number of columns
 # column names
 colnames(clinical_data) 
 
-# structure of the data frame
+# Structure of the data frame: what type is each column? character (chr)?
+# integer (int)? numeric (num)? Factor?
 str(clinical_data) 
-
 
 # Getting a summary (some statistics)
 summary(clinical_data)
 
-# MISSING VALUES
+# Age has 1 missing value. We decide to remove this MISSING VALUE
+# ! Note that this will remove the row with the NA completely!
 clinical_data <- na.omit(clinical_data)
 summary(clinical_data)
+nrow(clinical_data) # number of columns
 
-# Reminder – accessing parts of the dataframe
+
+# Bonus section ----
+
+# Reminder – Accessing parts of the data frame
 clinical_data[2,] # 2nd row
-clinical_data[, "Age"] # column named "minor"
+clinical_data[, "Age"] # column named "Age"
 clinical_data[1:3, c(1,3)] # 3 first rows, 1st and 3rd column
 clinical_data$Sample_ID # equivalent to clinical_data[, 1]
-clinical_data$Sex[30] # chromosome of the last row
+clinical_data$Sex[29] # Sex of the last row
 
-# The table() function 
+# End of Bonus section ----
+
+
+# The table() function is 
 # useful to get a summary of one or several categorical columns
 table(clinical_data$Disease)
 table(clinical_data$Disease, clinical_data$Sex) # rows are "Disease", columns are "Sex"
 
-##################
+
 # Subsetting a df
 
 # subset() allows you to subset your data by specific columns and values in those columns. 
-# Logical operators can be used within the subset.
+# Logical operators can be used within the subset function to select the
+# rows of interest. 
 
-subset(clinical_data, Disease=="Tumor")# keeps only the clinical_data where Disease is "Tumor"
+subset(clinical_data, Disease=="Tumor") 
+# keeps only the clinical_data where Disease is "Tumor"
 
-subset(clinical_data, Disease=="Tumor" & Sex=="female") # keeps only the clinical_data in "female" & "Tumor" samples
+subset(clinical_data, Disease=="Tumor" & Sex=="female") 
+# keeps only the clinical_data in "female" & "Tumor" samples
 
-subset(clinical_data, Sex=="male" & (Age > 75 | Age < 60)) # keeps only the clinical_data of males with age < 60 or age > 75
+subset(clinical_data, Sex=="male" & (Age > 75 | Age < 60)) 
+# keeps only the clinical_data of males with age < 60 or age > 75
 
 
 ########################
-# Adding rows or columns
+# Adding columns to a data frame
 
-# add a row
-### !!! LONG STATEMENTS CAN BE WRITTEN IN SEVERAL LINES !!! ###
+# Let's add a column
+# There are 2 ways to add a column 
+# 1. Create a new vector that has the same length as the number of rows of your
+# data frame, then we use the cbind function to append the new vector to the 
+# data frame:
+grade <- c(NA,"IV",NA,"III",NA,NA,"IV","I","III","I","III","IV",NA,
+           NA,"III","II","II",NA,"II",NA,NA, NA,"IV","II","III",NA,NA,  
+           NA,NA,"I" ) # create new vector
+length(grade) # 30
+
+clinical_data_mod <- cbind(clinical_data_updated, grade) # bind by column
+
+# 2. Use the $ sign with a new column name, and use the assignment operator to 
+# create the new column:
+clinical_data_mod$grade_2 <- grade 
+
+# Convert "grade" to a factor, and order its levels according to 
+# increasing severity (and not alphabetically)
+clinical_data_mod$grade <- factor(clinical_data_mod$grade, levels = c("I","II","III","IV"))
+
+# Removing a row or column
+
+clinical_data_orig <- clinical_data_mod[,-1] # remove the first column
+head(clinical_data_orig) # check resulting data
+
+# extract all columns that you want to keep
+clinical_data_orig <- clinical_data_mod[, 2:ncol(clinical_data_mod)] 
+head(clinical_data_orig) # check resulting data
+
+
+# Bonus section ----
+
+# Let's add a row using the rbind function.
+# The rbind function can append 2 data frames by rows. Therefore,
+# the newly provided row has to be formatted as a data frame also!
+# The 2 data frames to be appended by row must have the same number of columns!
+
+### ! Long statements can be broken up over several lines of script !
 clinical_data_updated <- rbind(clinical_data,
                                data.frame(Sample_ID="M207",
                                           Age=45,
@@ -655,23 +796,7 @@ clinical_data_updated <- rbind(clinical_data,
 
 tail(clinical_data_updated)
 
-
-# Add a column
-grade <- c(NA,"IV",NA,"III",NA,NA,"IV","I","III","I","III","IV",NA,
-           NA,"III","II","II",NA,"II",NA,NA, NA,"IV","II","III",NA,NA,  
-           NA,NA,"I" ) # create new column (as a vector)
-clinical_data_mod <- cbind(clinical_data_updated, grade) # bind by column
-
-# create factors for "Disease"
-clinical_data_mod$grade <- factor(clinical_data_mod$grade, levels = c("I","II","III","IV"))
-
-# Removing a row or column
-
-clinical_data_orig <- clinical_data_mod[,-1] # remove the first column
-head(clinical_data_orig) # check resulting data
-
-clinical_data_orig <- clinical_data_mod[,2:ncol(clinical_data_mod)] # extract all columns that you want to keep
-head(clinical_data_orig) # check resulting data
+# End of Bonus section ----
 
 
 ######################
@@ -679,74 +804,135 @@ head(clinical_data_orig) # check resulting data
 ######################
 
 
-# Create a matrix of gene expression data (3 genes, 5 samples)
+# Create a matrix of gene expression data (3 genes in rows, 5 samples in columns)
 # Suggestion:
-#         M421  M228  M263  M229  M257
-# ANKIB1  46    91    37    53    53
-# OSBPL11  4    23    16    30    12
-# CALY     0    0     1     0     0
+#         M421 M229 M263 M230 M257
+# ANKIB1    46   91   37   53   53
+# OSBPL11    4   23   16   30   12
+# CALY       0    0    1    0    0
 
-matrix_gene_expression <- matrix(c(46,4,0,
-                                   91,23,0,
-                                   37,16,1,
-                                   53, 30,0,
-                                   53, 12, 0), nrow = 3, ncol = 5)
-colnames(matrix_gene_expression) <- c("M421","M229","M263","M229AR","M257")
-rownames(matrix_gene_expression) <- c("ANKIB1","OSBPL11","CALY")
+# Hint: Use the matrix function and provide a vector of expression values, then
+# edit the column names and the row names.
 
-# Create a data frame containing clinical information (age, sex, disease) for the samples
+# Create a data frame containing clinical information (age, sex, disease, in columns)
+# for the same samples (in rows)
 # Suggestion
 #        age  sex disease
 # M421    35   M  Healthy
 # M229    27   F  Cancer
 # M263    43   M  Cancer
-# M229AR  65   M  Cancer
+# M230    65   M  Cancer
 # M257    72   F  Healthy
 
+# Hint: use the data.frame() function to combine vectors, then edit the column
+# and row names.
+
+# Check that samples are in the same order in both objects
+# Hint: use the == operator to compare 2 vectors.
+
+# Do we have clinical data for samples "M421" and "M422" ?
+# Hint: use the %in% operator to compare 2 vectors.
+
+# What is the mean age of female patients ?
+# Hint: use the mean function on a vector that contains the age values only
+# of female patients. Use the square brackets.
+
+# What is the max expression of OSBPL11 in patients with cancer?
+# Hint: use the max function on a vector made of the OSBPL11's expression
+# only of Cancer patients
+
+
+# Solution:
+# Create a matrix of gene expression data (3 genes in rows, 5 samples in columns)
+# Suggestion:
+#         M421 M229 M263 M230 M257
+# ANKIB1    46   91   37   53   53
+# OSBPL11    4   23   16   30   12
+# CALY       0    0    1    0    0
+
+# Hint: Use the matrix function and provide a vector of expression values, then
+# edit the column names and the row names:
+matrix_gene_expression <- matrix(c(46,4,0,
+                                   91,23,0,
+                                   37,16,1,
+                                   53, 30,0,
+                                   53, 12, 0), nrow = 3, ncol = 5)
+colnames(matrix_gene_expression) <- c("M421","M229","M263","M230","M257")
+rownames(matrix_gene_expression) <- c("ANKIB1","OSBPL11","CALY")
+
+# Create a data frame containing clinical information (age, sex, disease, in columns)
+# for the same samples (in rows)
+# Suggestion
+#        age  sex disease
+# M421    35   M  Healthy
+# M229    27   F  Cancer
+# M263    43   M  Cancer
+# M230    65   M  Cancer
+# M257    72   F  Healthy
+
+# Hint: use the data.frame() function to combine vectors, then edit the column
+# and row names:
 age <- c(35,27,43,65,72)
 sex <- c("M","F","M","M","F")
 disease <- c("Healthy","Cancer","Cancer","Cancer","Healthy")
 
-clinical_information <- data.frame(age,sex,disease)
-rownames(clinical_information) <- c("M421","M229","M263","M229AR","M257")
+clinical_information <- data.frame(age, sex, disease)
+rownames(clinical_information) <- c("M421","M229","M263","M230","M257")
 
 # Check that samples are in the same order in both objects
+# Hint: use the == operator to compare 2 vectors:
 colnames(matrix_gene_expression) == rownames(clinical_information)
 
-# Do we have data for samples "M421" and "M422" ?
+# Do we have clinical data for samples "M421" and "M422" ?
+# Hint: use the %in% operator to compare 2 vectors:
 c("M421","M422") %in% rownames(clinical_information)
 
 # What is the mean age of female patients ?
+# Hint: use the mean function on a vector that contains the age values only
+# of female patients. Use the square brackets.
 mean(clinical_information[clinical_information$sex=="F", "age"])
 
 # What is the max expression of OSBPL11 in patients with cancer?
-max(matrix_gene_expression["OSBPL11",clinical_information$disease=="Cancer"])
+# Hint: use the max function on a vector made of the OSBPL11's expression
+# only of Cancer patients
+max(matrix_gene_expression["OSBPL11", clinical_information$disease=="Cancer"])
+
 
 
 ########################
 # Exporting a data frame
 
-# use write.table() or write.csv()
+# Because objects within R are deleted once we close R (unless we save our Environment),
+# we can save a data frame that we have manipulated and edited within R 
+#  to a text file or csv file.
+
+# We use write.table() or write.csv()
 # Some important arguments (check ?write.table for more):
-#   file: file path and name for the output file
+#   file: file path and name for the output file 
+# !! Beware: if you give a file name that already exists, the file will be 
+# over-written!! To make sure not to over-write an existing file, use a file
+# name that doesn't exit yet !!
 #   append: allows to append to an existing file (default is FALSE).
-#   quote: whether the elements of character or factor columns should be surrounded 
+#   quote: whether the elements of type character or factor should be surrounded 
 #           by double quotes in the printed output (default is TRUE !).
 #   sep: field separator to be used, e.g., comma (",") or tab ("\t").
 #   row.names: whether the row names are written (default is TRUE)
 #   col.names: whether the column names are written (default is TRUE).
 
-
+# We export the clinical_data_updated data frame:
+# If you don't specify the path to where it should be saved, it will be 
+# saved in the working directory, which you can check with
+getwd()
 write.table(clinical_data_updated, 
-            "~/Documents/SIB/Teaching/Intro_to_R_for_Life_Sciences_Agora_03102024/course_datasets/example_clinical_data_updated_03102024.csv",
+            "example_clinical_data_updated_03102024.csv",
             quote=FALSE, 
             sep=",", 
             row.names=FALSE)
 
 
 
-### Afternoon - Part 1
-### Plotting
+### Part 3
+## Plotting
 # Two main options are available within R for plotting. 
 # Base R plotting functions from the graphics package (comes already pre-installed)
 ?graphics::plot
@@ -756,112 +942,813 @@ y <- log(x) + (x/100)^5
 plot(x,y) # equivalent to plot(x, y, type="p")
 
 # Customizing plots
-plot(x, y, type="l", col="red",  lwd=7)
-# You will see the hist() function later in the statistics section
+plot(x, y, type="l", col="red",  lwd=3) # this gives a continuous line, of width 3
+plot(x, y, type="p", col="cornflowerblue",  pch=17) # this gives blue triangles
+abline(a=0, b=1) # adding a continuous line with intercept a=0 and slope b=1 
 
+# You will see the hist() function, as well as other base functions, later in
+# the statistics section
 
-### In omics data analysis, we more routinely use ggplot2, which has to be
-# installed (eg scRNAseq data analysis)
-# Using ggplot2 allows you to have more customizable plots, and there
+# In omics data analysis (eg bulk or single-cell RNAseq data analysis), we more 
+# routinely use ggplot2, which has to be installed.
+# Using ggplot2 allows you to obtain more customizable plots, and there
 # are more plot options than with base R, eg violin plots. 
+
 install.packages("ggplot2")
 library(ggplot2)
 
-# TMEM79
-# LYN
+# ggplot2 requires the data to be formatted in data frames!
 
-# Bonus ggplot2
-library(ggplot2)
+# Let's clear our Environment first:
+rm(list = ls())
 
-# Boxplot of BMI vs stage, coloring according to stage
-# With legend:
-ggplot(data=clinical_data, aes(x=stage, y=BMI, color=stage)) + 
-  geom_boxplot() 
+# Using the data from Tsoi et al., let's explore the expression of genes between 
+# two subtypes of melanoma cell lines ("Undifferentiated" and "Melanocytic")
+# The genes to be compared are:
+# SOX10 (reported as being differentially expressed between subtypes of melanoma)
+# TMEM9 (not reported as differentially expressed)
 
-# Boxplot of BMI vs stage, coloring according to stage, flipping orientation
-ggplot(data=clinical_data, aes(x=stage, y=BMI, color=stage)) + 
+# Read in the metadata of tumor cell lines (comes from the paper's supplementary
+# files)
+metadata <- read.csv("1-s2.0-S1535610818301223-mmc2.csv", 
+  header = TRUE )
+
+# Let's check the Subtypes available
+table(metadata$Subtype)
+
+# Convert Subtype to a factor (important for plotting order)
+metadata$Subtype <- factor(metadata$Subtype, 
+            levels = c("Undifferentiated", "Neural crest like","Transitory", "Melanocytic"))
+class(metadata$Subtype)
+
+# read in the expression data generated for each cell line:
+expression_data <- read.table("example_gene_expression_03102024.txt",
+                              header=T)
+# Explore the data frame!
+
+# Add rownames to the metadata, based on the column "Gene"
+rownames(expression_data) <- expression_data$Gene
+
+# Remove the column "Gene"
+expression_data$Gene <- NULL
+expression_data <- as.matrix(expression_data)
+
+# Common plots in biological sciences show continuous data grouped by 
+# categorical variables.
+# In our case, the categorical variables are in the metadata df, separated 
+# from the continuous gene expression data in expression_data. However, ggplot2
+# requires a single data frame as input.
+# We need to combine the continuous data with the categorical data into a 
+# single data frame.
+# We need to make sure the categorical df and the continuous gene expression
+# df contain the same samples in the same order!
+
+# We create a new column in the metadata that contains the gene expression
+# value we are interested in, in the same order as the samples are organized
+# in the metadata object.
+
+# Get a vector of sample names that are present in both objects:
+common_samples <- intersect(metadata$Cell.Line, colnames(expression_data))
+
+# Add expression of TMEM9 and SOX10 to the metadata df, extracting the column names
+# that correspond to the metadata$Cell.Line
+# It has to be a numeric vector! 
+class(expression_data["TMEM9", metadata$Cell.Line])
+metadata$TMEM9 <- expression_data["TMEM9", metadata$Cell.Line]
+metadata$SOX10 <- expression_data["SOX10", metadata$Cell.Line]
+str(metadata) # check the format
+
+# We create a basic boxplot that indicates the gene expression (y axis) per subtype
+# (x axis)
+ggplot(metadata, # the data frame that contains the values to plot
+              aes(x = Subtype, # what will be on the x axis
+                  y = TMEM9, # what will be on the y axis
+                  color = Subtype)) + # how to group the y values
+  geom_boxplot()  # additional layer to choose a default boxplot
+
+# As you can see, we obtain a boxplot with some default colors
+# and even a legend!
+
+# We can also create a scatter plot of one gene versus the other
+ggplot(metadata, # the data frame that contains the values to plot
+       aes(x = TMEM9, # what will be on the x axis
+           y = SOX10, # what will be on the y axis
+           color = Subtype)) + # how to group the y values
+  geom_point()  # additional layer to choose a default scatter plot
+
+# Let's do some additional customization of a boxplot of SOX10
+ggplot(metadata, # the data frame that contains the values to plot
+       aes(x = Subtype, # what will be on the x axis
+           y = SOX10, # what will be on the y axis
+           fill = Subtype)) + # how to group the y values (note the difference
+  # when using argument "color" above)
+  geom_boxplot() +    # additional layer to choose a default box plot
+  xlab("") +   # leave the x-axis name empty
+  ylab("Expression level (FPKM)") +    # change the y-axis name
+  ggtitle("SOX10") + # add a title
+  theme(legend.position = "none")   # remove the legend
+
+# Note about the theme() layer in ggplot2:
+# Themes are a powerful way to customize the non-data components of your plots: 
+# i.e. titles, labels, fonts, background, gridlines, and legends. Themes can be 
+# used to give plots a consistent customized look.  
+# Some pre-made looks are avaibable: 
+# theme_bw(), theme_minimal(), and more. 
+
+# Let's try theme_bw()
+ggplot(metadata, # the data frame that contains the values to plot
+       aes(x = Subtype, # what will be on the x axis
+           y = SOX10, # what will be on the y axis
+           fill = Subtype)) + # how to group the y values (note the difference
+  # when using argument "color" above)
   geom_boxplot() + 
-  coord_flip()  
+  xlab("") + # leave the x-axis name empty
+  ylab("Expression level (FPKM)") + # change the y-axis name
+  ggtitle("SOX10") + # add a title
+  theme_bw() # black/white look of plot
 
-# Without legend:
-ggplot(data=clinical_data, aes(x=BMI, y=stage, color=stage)) + 
+# Let's pick a manual color set:
+ggplot(metadata, # the data frame that contains the values to plot
+         aes(x = Subtype, # what will be on the x axis
+             y = SOX10, # what will be on the y axis
+             fill = Subtype)) + # how to group the y values 
   geom_boxplot() + 
-  coord_flip() + 
-  theme(legend.position = "none")
+  scale_fill_manual(values=c("cornflowerblue", "coral", "purple", "lightgreen")) +
+  xlab("") + # leave the x-axis name empty
+  ylab("Expression level (FPKM)") + # change the y-axis name
+  ggtitle("SOX10") +
+  theme_bw()  + # black/white look of plot
+  theme(legend.position = "none", axis.text.x= element_text(angle = 90)) # we
+  # add the theme() function to remove the legend and turn the x axis tick labels
+  
+# Finally, we can easily separate the boxplot according to an
+# additional categorical factor.
+# We use the same plot as above:
+ggplot(metadata, # the data frame that contains the values to plot
+       aes(x = Subtype, # what will be on the x axis
+           y = SOX10, # what will be on the y axis
+           fill = Subtype)) + # how to group the y values 
+  geom_boxplot() + 
+  scale_fill_manual(values=c("cornflowerblue", "coral", "purple", "lightgreen")) +
+  xlab("") + # leave the x-axis name empty
+  ylab("Expression level (FPKM)") + # change the y-axis name
+  ggtitle("SOX10") +
+  theme_bw()  + # black/white look of plot
+  theme(legend.position = "none", axis.text.x= element_text(angle = 90)) +
+  facet_wrap(~Mutation.Status) # make facets according to mutation status
 
-# Scatter plot of weight vs height, coloring by gender
-ggplot(data=clinical_data, aes(x=weight, y=height, color=gender)) +
-  geom_point()
 
+# Bonus section ----
 
-# Compare plot generated earlier with base R with ggplot2:
-# Reproduce Plot 2 of exercise 8
-plot(clinical_data$weight,clinical_data$height, 
-     pch=19,
-     main="Weight vs Height in Patients",
-     xlab="Weight [kg]", ylab="Height [m]",
-     col=c("orange", "blue")[clinical_data$gender])
-legend("bottomright",
-       legend=levels(clinical_data$gender),
-       col=c("orange","blue"),
-       pch=19)
-abline(lm(clinical_data$height ~ clinical_data$weight),
-       col="black", lwd=1.5)
+### Multi panel of plots made with ggplot2 and arranged with cowplot.
+# We use the same color scheme in both plots, so we can create a 
+# vector with our colors of choice, and re-use the vector:
+color <- c("cornflowerblue", "coral", "purple", "lightgreen")
 
-# Customizing with ggplot2
-# Scatter plot of weight vs height, coloring by gender
-ggplot(data=clinical_data, aes(x=weight, y=height, color=gender)) +
+p1 <- ggplot(metadata, 
+         aes(x = Subtype, 
+             y = SOX10, 
+             fill = Subtype)) + 
+  geom_boxplot() + 
+  scale_fill_manual(values=color) + # use our colors of choice
+  xlab("") + 
+  ylab("Expression level (FPKM)") + 
+  ggtitle("SOX10") +
+  theme_bw()  + 
+  theme(legend.position = "none", axis.text.x= element_text(angle = 90)) 
+
+# Create a customized scatter plot of SOX10 vs TMEM9
+p2 <- ggplot(data=metadata, aes(x=TMEM9, y=SOX10, color=Subtype)) +
   geom_point() +
-  scale_color_manual(values=c("female"="orange", "male"="blue")) + 
-  ggtitle("Weight vs Height in Patients") +
-  xlab("Weight [kg]") + ylab("Height [m]") +
-  theme_bw() +
-  geom_smooth(method = "lm",
-              formula = y ~ x,
-              se=TRUE) # display confidence interval around smoothed curve
-
-# Create a separate plot for males and females:
-# Facet wrap: separate the plots according to a categorical (factor) variable
-ggplot(data=clinical_data, aes(x=weight, y=height, color=gender)) +
-  geom_point() +
-  scale_color_manual(values=c("female"="orange", "male"="blue")) + 
-  ggtitle("Weight vs Height in Patients") +
-  xlab("Weight [kg]") + ylab("Height [m]") +
-  theme_bw() +
-  geom_smooth(method = "lm",
-              formula = y ~ x,
-              se=TRUE) +
-  facet_wrap(~gender)
-
-
-### Multi panel figures with ggplot2
-p1 <- ggplot(data=clinical_data, aes(x=weight, y=height, color=gender)) +
-  geom_point() +
-  scale_color_manual(values=c("female"="orange", "male"="blue")) + 
-  ggtitle("Weight vs Height in Patients") +
-  xlab("Weight [kg]") + ylab("Height [m]") +
-  theme_bw() 
-
-# Create a separate plot for males and females:
-# Facet wrap: separate the plots according to a categorical (factor) variable
-p2 <- ggplot(data=clinical_data, aes(x=weight, y=height, color=gender)) +
-  geom_point() +
-  scale_color_manual(values=c("female"="turquoise", "male"="plum")) + 
-  ggtitle("Weight vs Height in Patients") +
-  xlab("Weight [kg]") + ylab("Height [m]") +
+  scale_color_manual(values=color) + 
+  ggtitle("TMEM9 vs SOX10 expression") +
+  xlab("TMEM9 (FPKM)") + ylab("SOX10 (FPKM)") +
   theme_bw() 
 
 # install.packages("cowplot")
 library(cowplot)
-plot_grid(p1, p2, nrow=1)
+# we can adapt the relative width of each plot, making one wider as the other:
+plot_grid(p1, p2, nrow=1, rel_widths = c(1, 2))
+
+# Note: when a ggplot is saved to an object, it is not in the RStudio plotting 
+# window directly. If you want to view the ggplot object, just call its name 
+# in the console, and it will appear in the plotting window. Try with the 2 
+# ggplot objects we just created:
+p1
+p2
+
+# Saving figures to files
+# The ggsave functions allows to export a ggplot object to a pdf for example.
+# It is used as an additional layer on a plot, just as done above:
+
+# Example 1: boxplot of SOX10:
+ggplot(metadata, # the data frame that contains the values to plot
+       aes(x = Subtype, # what will be on the x axis
+           y = SOX10, # what will be on the y axis
+           fill = Subtype)) + 
+  geom_boxplot() + 
+  ggsave(filename = "SOX10_boxplot.pdf")
+
+# Example 2: saving a ggplot object, eg p1 created above, and adding 
+# size options:
+ggsave(filename = "SOX10_boxplot_2.pdf", plot = p1, width = 3, height = 5 )
+
+# Finally, a plot created with the base graphics package (i.e plot() function)
+# or arranged with cowplot, can be exported with the pdf() and dev.off() 
+# functions of the grDevices package
+pdf(file = "SOX10_multiPanel.pdf", width = 6, height = 3)
+plot_grid(p1, p2, nrow=1, rel_widths = c(1, 2))
+dev.off()
+
+# End of Bonus section ----
+
+
+########################
+# Let's practice.      #
+########################
+
+# With this code, we created a scatter plot one gene versus the other
+ggplot(metadata, # the data frame that contains the values to plot
+       aes(x = TMEM9, # what will be on the x axis
+           y = SOX10, # what will be on the y axis
+           color = Subtype)) + # how to group the y values
+  geom_point()  # additional layer to choose a default scatter plot
+
+# Can you customize it to:
+# Add a title of your choice
+# Change it to a black/white theme
+# Match to the paper's color scheme which is similar to what we have used 
+# for the boxplot.
+# Hint: the layer is called scale_color_manual() and the color names are:
+# "cornflowerblue", "coral", "purple", "lightgreen"
+
+# Solution 
+ggplot(metadata, # the data frame that contains the values to plot
+       aes(x = TMEM9, # what will be on the x axis
+           y = SOX10, # what will be on the y axis
+           color = Subtype)) + # how to group the y values
+  geom_point()  + # additional layer to choose a default scatter plot
+  scale_color_manual(values=c("cornflowerblue", "coral", "purple", "lightgreen")) +
+  theme_bw() +
+  ggtitle("TMEM9 vs SOX10") # title of your choice
+
+
+### Part 4
+###########################
+# Basic Statistics in R   #                   
+###########################
+
+# clear the global environment
+rm(list = ls())
+
+# Using the data from Tsoi et al., let's compare the expression of genes between two subtypes of melanoma ("Undifferentiated" and "Melanocytic")
+# The genes to be compared are:
+# SOX10 (reported as being differentially expressed between subtypes of melanoma)
+# TMEM9 (not reported as differentially expressed)
+
+
+#################
+# T test        #
+# (Parametric)  #
+#################
+
+
+############################
+# Read and format the data
+
+
+# Read in the metadata (same as in the plotting section!)
+metadata <- read.csv("1-s2.0-S1535610818301223-mmc2.csv", 
+  header = TRUE )
+
+# lets check the subtypes
+table(metadata$Subtype)
+
+# subset to "Melanocytic" and "Undifferentiated" subtypes
+metadata.sub <- metadata[metadata$Subtype %in% c("Melanocytic","Undifferentiated"),]
+
+# create a factor (important for plotting and in some test functions)
+metadata.sub$Subtype <- factor(metadata.sub$Subtype, levels = c("Undifferentiated","Melanocytic"))
+class(metadata.sub$Subtype)
+
+# Read in the expression data (same as in the plotting section!)
+expression_data <- read.table("example_gene_expression_03102024.txt",
+                              header=T)
+
+# Add rownames to the metadata, based on the column "Gene"
+rownames(expression_data) <- expression_data$Gene
+
+# Remove the column "Gene"
+expression_data$Gene <- NULL
+
+# convert from a data.frame to a matrix
+expression_data <- as.matrix(expression_data)
+
+# create separate vectors of expression of TMEM9 in Undifferentiated and Melanocytic
+metadata.sub$Cell.Line %in% colnames(expression_data) # check if samples are present in matrix
+Melanocytic_cell_lines <- metadata.sub$Cell.Line[metadata.sub$Subtype=="Melanocytic"]
+Undifferentiated_cell_lines <- metadata.sub$Cell.Line[metadata.sub$Subtype=="Undifferentiated"]
+TMEM9_expression_Melanocytic <- expression_data["TMEM9",Melanocytic_cell_lines] 
+TMEM9_expression_Undifferentiated <- expression_data["TMEM9",Undifferentiated_cell_lines] 
+
+
+##############################
+# Check normality of data in plots
+# We use histograms and QQplot to visually assess normality
+
+# Histogram - Melanocytic
+# hist() is a base graphics function. For customization of the plot, we change
+# the arguments within the hist() function.
+hist(TMEM9_expression_Melanocytic, # continuous values to be plotted on the histogram
+     xlab="FPKM", # to change the x-axis name
+     main="TMEM9 - Melanocytic") # to change the title
+
+
+# Quantile-Quantile Plots - Melanocytic
+qqnorm(TMEM9_expression_Melanocytic) # this function uses base graphics functions!
+qqline(TMEM9_expression_Melanocytic) # the QQ line as added on top of the 
+                                     # already created plot!
+
+# Shapiro-Wilk test of normality - Melanocytic
+shapiro.test(TMEM9_expression_Melanocytic)
+# Shapiro-Wilk normality test
+# 
+# data:  TMEM9_expression_Melanocytic
+# W = 0.95202, p-value = 0.4892
+
+# Histogram - Undifferentiated
+hist(TMEM9_expression_Undifferentiated,
+     xlab="FPKM",
+     main="TMEM9 - Undifferentiated")
+
+# Quantile-Quantile Plots - Undifferentiated
+qqnorm(TMEM9_expression_Undifferentiated)
+qqline(TMEM9_expression_Undifferentiated)
+
+# Shapiro-Wilk test of normality - Undifferentiated
+shapiro.test(TMEM9_expression_Undifferentiated)
+# Shapiro-Wilk normality test
+# Shapiro-Wilk normality test
+# 
+# data:  TMEM9_expression_Undifferentiated
+# W = 0.95378, p-value = 0.7133
+
+
+###################
+# Run t.test()
+
+?t.test
+t.test(TMEM9_expression_Melanocytic, 
+       TMEM9_expression_Undifferentiated)
+
+# Welch Two Sample t-test
+# 
+# data:  TMEM9_expression_Melanocytic and TMEM9_expression_Undifferentiated
+# t = -0.41222, df = 20.909, p-value = 0.6844
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -17.89161  11.97341
+# sample estimates:
+#   mean of x mean of y 
+# 47.67613  50.63523 
+
+# t.test() and other tests return a list that can be assigned to a variable
+test_res <- t.test(TMEM9_expression_Melanocytic, 
+                   TMEM9_expression_Undifferentiated)
+
+# View the names of the list’s slots using names().
+names(test_res)
+
+# Access the elements of a list using the $ or the [[ ]] operators.
+test_res[['p.value']]
+
+
+##################################
+# Alternative: using a formula
+
+# add expression of TMEM9 to the metadata df
+metadata.sub$TMEM9 <- expression_data["TMEM9", metadata.sub$Cell.Line]
+head(metadata.sub) # check
+
+# run the t.test
+t.test(TMEM9 ~ Subtype, data=metadata.sub) 
+
+# Welch Two Sample t-test
+# 
+# data:  TMEM9 by Subtype
+# t = 0.41222, df = 20.909, p-value = 0.6844
+# alternative hypothesis: true difference in means between group Undifferentiated and group Melanocytic is not equal to 0
+# 95 percent confidence interval:
+#   -11.97341  17.89161
+# sample estimates:
+#   mean in group Undifferentiated      mean in group Melanocytic 
+# 50.63523                       47.67613
 
 
 
+#############################################
+# Visualize group differences and add p-value
 
-### Afternoon - Part 2
-### Statistics
+library(ggplot2)
+
+ggplot(metadata.sub, aes(x=Subtype, y=TMEM9, fill=Subtype)) +
+  geom_boxplot() +
+  ylab("FPKM") +
+  ggtitle("TMEM9") 
+
+
+# add results of t.test
+library(ggpubr)
+ggplot(metadata.sub, aes(x=Subtype, y=TMEM9, fill=Subtype)) +
+  geom_boxplot() +
+  stat_compare_means(method = "t.test") + # this function comes from the
+                                          # ggpubr package
+  ylab("FPKM") +
+  ggtitle("TMEM9") 
+
+
+###############################################
+# Non-parametric alternatives to the t-test   #
+# Mann-Whitney’ test                          #
+###############################################
+
+# When the data deviates strongly from normality, 
+# a non-parametric test can be used in place of a t-test.
+# Non-parametric tests do not assume any particular distribution of the data.
+
+# Add SOX10 expression to the metadata
+metadata.sub$SOX10 <- expression_data["SOX10",metadata.sub$Cell.Line]
+head(metadata.sub)
+
+
+# Check normality - Melanocytic
+SOX10_expression_Melanocytic <- metadata.sub$SOX10[metadata.sub$Subtype=="Melanocytic"]
+hist(SOX10_expression_Melanocytic,
+     xlab="FPKM",
+     main="SOX10 - Melanocytic")
+
+qqnorm(SOX10_expression_Melanocytic)
+qqline(SOX10_expression_Melanocytic)
+
+shapiro.test(SOX10_expression_Melanocytic)
+# Shapiro-Wilk normality test
+# 
+# data:  SOX10_expression_Melanocytic
+# W = 0.95783, p-value = 0.591
+
+# Check normality - Undifferentiated
+SOX10_expression_Undifferentiated <- metadata.sub$SOX10[metadata.sub$Subtype=="Undifferentiated"]
+hist(SOX10_expression_Undifferentiated,
+     xlab="FPKM",
+     main="SOX10 - Undifferentiated")
+
+# Quantile-Quantile Plots - Undifferentiated
+qqnorm(SOX10_expression_Undifferentiated)
+qqline(SOX10_expression_Undifferentiated)
+
+# Shapiro-Wilk test of normality - Undifferentiated
+shapiro.test(SOX10_expression_Undifferentiated)
+# Shapiro-Wilk normality test
+# 
+# data:  SOX10_expression_Undifferentiated
+# W = 0.37005, p-value = 1.126e-07
+
+
+#####################
+# Run wilcox.test()
+
+?wilcox.test
+
+test_res <- wilcox.test(SOX10 ~ Subtype, data=metadata.sub)
+
+test_res
+# Wilcoxon rank sum exact test
+# 
+# data:  SOX10 by Subtype
+# W = 170, p-value = 2.371e-07
+# alternative hypothesis: true location shift is not equal to 0
+
+names(test_res)
+test_res[["p.value"]]
+
+
+#############################
+# Visualize group differences
+
+ggplot(metadata.sub, aes(x=Subtype, y=SOX10, color=Subtype)) +
+  geom_boxplot() +
+  stat_compare_means(method = "wilcox") + # function from the ggpubr package
+  ylab("FPKM") +
+  ggtitle("SOX10")
 
 
 
+#####################
+# LET'S PRACTICE !  #
+#####################
+
+# Compare the expression of the gene "MITF" between Undifferentiated and Melanocytic
+# Also use the QQ plot and QQ line to check normality of the gene expression
+# within each group.
 
 
+# Solution:
+
+metadata.sub$MITF <- expression_data["MITF",metadata.sub$Cell.Line]
+
+# Check normality - Melanocytic
+MITF_expression_Melanocytic <- metadata.sub$MITF[metadata.sub$Subtype=="Melanocytic"]
+hist(MITF_expression_Melanocytic,xlab="FPKM",main="MITF")
+
+qqnorm(MITF_expression_Melanocytic)
+qqline(MITF_expression_Melanocytic)
+
+shapiro.test(MITF_expression_Melanocytic)
+
+# Check normality - Undifferentiated
+MITF_expression_Undifferentiated <- metadata.sub$MITF[metadata.sub$Subtype=="Undifferentiated"]
+hist(MITF_expression_Undifferentiated,xlab="FPKM",main="MITF")
+
+qqnorm(MITF_expression_Undifferentiated)
+qqline(MITF_expression_Undifferentiated)
+
+shapiro.test(MITF_expression_Undifferentiated)
+
+t.test(MITF ~ Subtype, data=metadata.sub) # p-value = 2.665e-08
+wilcox.test(MITF ~ Subtype, data=metadata.sub) # p-value = 2.371e-07
+
+
+ggplot(metadata.sub, aes(x=Subtype, y=MITF, color=Subtype)) +
+  geom_boxplot() +
+  stat_compare_means(method = "t.test") +
+  ylab("FPKM") +
+  ggtitle("MITF") 
+
+
+#########################
+# LINEAR CORRELATION    #
+#########################
+
+# Quantify the strength of a linear correlation between two continuous variables
+
+# load Edgar Anderson's Iris Data
+data(iris)
+?iris
+
+# check
+head(iris)
+
+# Create a scatter plot of Petal.Length x Petal.Width
+
+ggplot(data = iris, aes(x= Petal.Length, y=Petal.Width)) +
+  geom_point() 
+
+# add a trend line
+?stat_smooth
+ggplot(data = iris, aes(x= Petal.Length, y=Petal.Width)) +
+  geom_point() +
+  stat_smooth(method="lm") # this function comes from the ggplot2 package
+
+# remove the Standard error around the trend line and change color
+?stat_smooth
+ggplot(data = iris, aes(x= Petal.Length, y=Petal.Width)) +
+  geom_point() +
+  stat_smooth(method="lm", se=FALSE, color="red")
+
+# color the dots according to species
+ggplot(data = iris, aes(x= Petal.Length, y=Petal.Width, color=Species)) +
+  geom_point() +
+  stat_smooth(method="lm",se=FALSE, color="red")
+
+# trend line and color per species
+ggplot(data = iris, aes(x= Petal.Length, y=Petal.Width, color=Species)) +
+  geom_point() +
+  stat_smooth(aes(color=Species), method="lm", se=FALSE)
+
+
+#####################
+# cor()
+
+# computes a correlation between two variables.
+# Default: method="pearson" (linear correlation)
+# Other options: method="spearman", method="kendall" (rank-based correlations)
+
+?cor
+
+# correlation coefficient
+cor(iris$Petal.Length,iris$Petal.Width, method = "pearson" )
+# 0.9628654
+
+##############
+# cor.test()
+
+# computes a correlation and performs a corresponding statistical test
+# for Pearson correlation: p-value from linear regression, same as lm()
+
+?cor.test
+cor.test(iris$Petal.Length,iris$Petal.Width, method = "pearson" )
+
+# Pearson's product-moment correlation
+# 
+# data:  iris$Petal.Length and iris$Petal.Width
+# t = 43.387, df = 148, p-value < 2.2e-16
+# alternative hypothesis: true correlation is not equal to 0
+# 95 percent confidence interval:
+#  0.9490525 0.9729853
+# sample estimates:
+#       cor 
+# 0.9628654 
+
+test_res <- cor.test(iris$Petal.Length,iris$Petal.Width, method = "pearson" )
+
+names(test_res)
+
+# retrieve the correlation coefficient
+test_res[["estimate"]]
+
+# retrieve the p.value
+test_res[["p.value"]]
+
+
+# add to the scatterplot
+ggplot(data = iris, aes(x= Petal.Length, y=Petal.Width)) +
+  geom_point() +
+  stat_smooth(method="lm", se=FALSE, color="red") + 
+  annotate("text", x = 2, y = 2.5, 
+           label = paste("r =", 
+                         round(test_res[["estimate"]], 2)),
+           hjust = 0.5, vjust = 0.5) +
+  theme_classic()
+
+
+
+########################
+# Linear regression    #
+########################
+
+# In R, the linear regression model is specified by a model formula of the form:
+# outcome ~ explanatory variables
+
+
+# We are going to use Acute Lymphoblastic Leukemia Data from the Ritz Laboratory
+# The data consist of microarrays from 128 different individuals with acute lymphoblastic leukemia (ALL). A number of additional covariates are available. The data have been normalized (using rma) and it is the jointly normalized data that are available here. The data are presented in the form of an exprSet object.
+# Reference: Sabina Chiaretti, Xiaochun Li, Robert Gentleman, Antonella Vitale, Marco Vignetti, Franco Mandelli, Jerome Ritz, and Robin Foa Gene expression profile of adult T-cell acute lymphocytic leukemia identifies distinct subsets of patients with different response to therapy and survival. Blood, 1 April 2004, Vol. 103, No. 7.
+
+
+# This was the code used to create the objects needed
+# BiocManager::install("ALL")
+# library("ALL")
+# expression_data = exprs(ALL)
+# clinical_data = pData(ALL)
+# colnames(expression_data) <- clinical_data$cod
+# # convert from probe IDs to symbols
+# #BiocManager::install("hgu95av2.db")
+# library("hgu95av2.db")
+# rownames(expression_data) <- mapIds(hgu95av2.db, rownames(expression_data), "SYMBOL", "PROBEID")
+# rownames(expression_data) <- make.unique(rownames(expression_data))
+# expression_data <- expression_data[!is.na(rownames(expression_data)),]
+# write.table(expression_data, file = "ALL_expression_matrix.txt", quote = FALSE, row.names = T, col.names = T)
+# write.csv(clinical_data, file = "ALL_clinical_data.csv", quote = FALSE, row.names = F)
+
+# Read the expression and the clinical data
+expression_data <- read.table("ALL_expression_matrix.txt", header = T)
+expression_data <- as.matrix(expression_data)
+clinical_data <- read.csv("ALL_clinical_data.csv")
+
+# check the clinical data
+summary(clinical_data)
+
+# We want to test if the levels of expression of a gene, STOM (Stomatin) is determined by age
+
+# Add expression of STOM to the clinical_data df
+clinical_data$STOM <- expression_data["STOM", clinical_data$cod]
+head(clinical_data)
+
+# Create a scatter plot
+ggplot(clinical_data, aes(x=age,y=STOM)) +
+  geom_point()
+
+
+###################
+# The lm() function
+
+# fits a linear model.
+# Creates an R object which contains the regression result
+# Just printing the result provides only the regression coefficients
+
+my_model <- lm(STOM~age, data=clinical_data)
+my_model
+# Call:
+#   lm(formula = STOM ~ age, data = clinical_data)
+# 
+# Coefficients:
+#   (Intercept)          age  
+# 7.55853      0.02507  
+
+# representation of the fit
+ggplot(clinical_data, aes(x=age,y=STOM)) +
+  geom_point() +
+  geom_smooth(method = "lm", se=FALSE) + xlim(0,60)
+
+
+###############################
+# Check model assumptions
+
+# Residuals
+residuals(my_model) # extracts a vector containing the residuals (error)
+
+# Several plots
+par(mfrow=c(2,2)) # this function prepares the plotting window to receive 4
+# plots generated with base graphics and to organize them into a panel of 2
+# rows and 2 columns. The par() function is usually called just before calling
+# the plot() functions. 
+plot(my_model) # the base plot() function can also take as argument a linear 
+# regression model in addition to vectors to plot on the x/y axes. 
+
+# Commentaries on these plots:
+# https://library.virginia.edu/data/articles/diagnostic-plots
+
+#########################
+# Model summary
+
+summary(my_model)
+# Call:
+#   lm(formula = STOM ~ age, data = clinical_data)
+# 
+# Residuals:
+#   Min      1Q  Median      3Q     Max 
+# -2.0982 -0.5423  0.1147  0.5837  1.5934 
+# 
+# Coefficients:
+#   Estimate Std. Error t value Pr(>|t|)    
+# (Intercept) 7.558530   0.182982  41.307  < 2e-16 ***
+#   age         0.025067   0.005203   4.818 4.24e-06 ***
+#   ---
+#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+# Residual standard error: 0.7932 on 121 degrees of freedom
+# (5 observations deleted due to missingness)
+# Multiple R-squared:  0.161,	Adjusted R-squared:  0.154 
+# F-statistic: 23.22 on 1 and 121 DF,  p-value: 4.244e-06
+
+
+#######################
+# LET'S PRACTICE      #
+#######################
+
+# The data set "Pima" comes from a study on diabetes in women of Pima Indian heritage.
+# We are using a subset (Pima.tr)
+# Load the package MASS using library()
+# Load the dataset Pima.tr using data(Pima.tr)
+# Use ? to get an idea which variables it contains
+
+# Hypothesis: Blood glucose level (glu) is associated with diastolic blood pressure (bp). 
+# Run a linear model to test the hypothesis
+# Visualize the fit with a scatter plot and a trend line
+# Check assumptions of the model graphically
+
+
+# Solution:
+
+library(MASS) # Load the package MASS using library(). 
+data(Pima.tr) # Load the dataset Pima.tr using data(Pima.tr). 
+?Pima.tr # Use ? to get an idea which variables it contains.
+
+# Run a linear model to test the hypothesis.
+my_model <- lm(bp ~ glu, data = Pima.tr)
+summary(my_model)
+
+# Call:
+#  lm(formula = bp ~ glu, data = Pima.tr)
+# Residuals:
+#   Min      1Q  Median      3Q     Max 
+# -32.532  -8.245  -0.017   7.202  32.390 
+# 
+# Coefficients:
+#   Estimate Std. Error t value Pr(>|t|)    
+# (Intercept) 59.15399    3.17396  18.637  < 2e-16 ***
+#   glu          0.09765    0.02481   3.936 0.000115 ***
+#   ---
+#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+# Residual standard error: 11.08 on 198 degrees of freedom
+# Multiple R-squared:  0.07257,	Adjusted R-squared:  0.06788 
+# F-statistic: 15.49 on 1 and 198 DF,  p-value: 0.0001146
+
+# Visualize the fit with a scatter plot and a trend line
+ggplot(Pima.tr, aes(x=glu, y=bp)) +
+  geom_point() +
+  geom_smooth(method = "lm", se=FALSE) +
+  ggtitle("Blood pressure vs glucose") +
+  xlab("Plasma glucose concentration") +
+  ylab("Diastolic blood pressure")
+
+
+# Check assumptions of the model graphically
+par(mfrow=c(2,2))
+plot(my_model)
+
+
+sessinInfo()
+# R version 4.3.3 (2024-02-29) 
+# ...

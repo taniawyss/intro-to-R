@@ -175,7 +175,7 @@ Download and open the provided commented script within R, run the commands and v
 
 In our script, we included some sections with "fill in the blanks" exercises. You can either download the script without the solutions (first button), or the script with the solutiobs. 
 
-[Download script without solutions](assets/scripts/intro-to_R_scripts.R){: .md-button }
+[Download script without solutions](assets/scripts/intro-to_R_scripts_woSolutions.R){: .md-button }
 
 [Download script with solutions](assets/scripts/intro-to_R_scripts.R){: .md-button }
 
