@@ -1,30 +1,18 @@
-## Slides of lectures
 
-### Day 1
+### Slides
 
-[Download slides - morning](assets/pdf/Intro_to_R_day1_morning.pdf){: .md-button }
-
-[Download slides - afternoon](assets/pdf/Intro_to_R_day1_afternoon.pdf){: .md-button }
-
-
-### Day 2
-
-[Download slides - morning](assets/pdf/Intro_to_R_day2_morning.pdf){: .md-button }
-
-[Download essential slides - afternoon](assets/pdf/Intro_to_R_day2_afternoon_essential.pdf){: .md-button }
-
-[Download slides - afternoon](assets/pdf/Intro_to_R_day2_afternoon.pdf){: .md-button }
-
+[Download slides](assets/pdf/Intro_to_R.pdf){: .md-button }
 
 ## Data for exercises 
 
-### Data for exercises of day 1 only
+The data we are using for the exercises comes from [Tsoi et al, 2018](https://www.sciencedirect.com/science/article/pii/S1535610818301223?via%3Dihub). The RNA seq data as FPKM values is publicly available under GEO accession number [GSE80829](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE80829).
+
 [Download course_datasets](assets/data/course_datasets.zip){: .md-button }
 
-### Data for all exercises, including day 2 (800 Mb data size)
-Download from the drive [here](https://drive.switch.ch/index.php/s/Nb91u9CTiOghq6w), using Pwd 54321
 
 
 <!-- This is commented text -->
 <!-- [Download part 2](../assets/pdfs/EA_122021_TW.pdf){: .md-button } -->
 
+<!-- Source of FPKM -->
+<!-- Tsoi et al (https://pubmed.ncbi.nlm.nih.gov/29657129/) -->

@@ -9,6 +9,7 @@ This course is proposed by the [Translational Data Science Facility](https://ago
 ## Learning outcomes
 
 R is vast and cannot be learned in one day. The scope of this course is to:  
+
 * Give you a basic understanding of concepts behind R.  
 * Allow you to import and manipulate data in R.  
 * Show you how to create your first plots.   
@@ -16,5 +17,5 @@ R is vast and cannot be learned in one day. The scope of this course is to:
 This course is only the first step in your R journey!
 
 ## Asking questions
-During lectures, you are encouraged to ask questions ! 
+During lectures, you are encouraged to ask questions, any question! There are no bad questions!
 

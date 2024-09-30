@@ -44,6 +44,10 @@ Book (2nd edition) by Hadley Wickham (a very active R developer), Mine Çetinkay
 
 [https://ggplot2.tidyverse.org/](https://ggplot2.tidyverse.org/)
 
+You can also have a look at ggplot2's [vignette](https://cran.r-project.org/web/packages/ggplot2/vignettes/ggplot2.html). 
+
+The [R Graphics Cookbook](https://r-graphics.org/) includes code to create graphs with both the base `graphics` package as well as `ggplot2`.
+
 
 ## R-charts
 
@@ -51,6 +55,11 @@ A site that has been created to be a reference for learning how to create charts
 
 [https://r-charts.com/](https://r-charts.com/)
 
+## R colors
+
+A nice pdf file with R color names by Dr Ying Wei
+
+[http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf)
 
 ## R Markdown
 
