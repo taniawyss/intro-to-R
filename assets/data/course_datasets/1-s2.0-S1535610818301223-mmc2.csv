@@ -1,0 +1,54 @@
+Cell.Line,Mutation.Status,Subtype
+M407,BRAF mutant,Undifferentiated
+M410,BRAF mutant,Undifferentiated
+M257,Wild-type,Undifferentiated
+M244,NRAS mutant,Undifferentiated
+M296,NRAS mutant,Undifferentiated
+M318,NRAS mutant,Undifferentiated
+M381,BRAF mutant,Undifferentiated
+M406,BRAF mutant,Undifferentiated
+M229AR,BRAF mutant,Undifferentiated
+Sbcl2,NRAS mutant,Undifferentiated
+M233,BRAF mutant,Neural crest like
+M243,NRAS mutant,Neural crest like
+M245,NRAS mutant,Neural crest like
+M238,BRAF mutant,Neural crest like
+M370,BRAF mutant,Neural crest like
+M409,BRAF mutant,Neural crest like
+M423,NA,Neural crest like
+M418,Wild-type,Neural crest like
+M402,BRAF mutant,Neural crest like
+M411,BRAF mutant,Neural crest like
+M238AR,BRAF mutant,Neural crest like
+M255,BRAF mutant,Neural crest like
+M409AR,BRAF mutant,Neural crest like
+M420,BRAF mutant,Neural crest like
+M395,BRAF mutant,Transitory
+M308,BRAF mutant,Transitory
+M229,BRAF mutant,Transitory
+M263,BRAF mutant,Transitory
+M297,BRAF mutant,Transitory
+M376,BRAF/NRAS double mutant,Transitory
+M398,BRAF/NRAS double mutant,Transitory
+M375,Wild-type,Transitory
+M399,BRAF mutant,Transitory
+M395AR,BRAF mutant,Transitory
+M397,BRAF mutant,Transitory
+M397AR,BRAF mutant,Transitory
+M202,NRAS mutant,Melanocytic
+M207,NRAS mutant,Melanocytic
+M230,Wild-type,Melanocytic
+M249,BRAF mutant,Melanocytic
+M262,BRAF mutant,Melanocytic
+M285,Wild-type,Melanocytic
+M311,NRAS mutant,Melanocytic
+M417,BRAF mutant,Melanocytic
+M416,BRAF mutant,Melanocytic
+M421,BRAF mutant,Melanocytic
+M368,Wild-type,Melanocytic
+M403,BRAF mutant,Melanocytic
+M408,NRAS mutant,Melanocytic
+M249AR,BRAF/NRAS double mutant,Melanocytic
+M412a,NRAS mutant,Melanocytic
+M412b,NRAS mutant,Melanocytic
+PB,Wild-type,Melanocytic
