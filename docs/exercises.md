@@ -173,7 +173,7 @@ packageVersion("stringi")
 
 Download and open the provided commented script within R, run the commands and view the the output!
 
-In our script, we included some sections with "fill in the blanks" exercises. You can either download the script without the solutions (first button), or the script with the solutiobs. 
+In our script, we included some sections with "fill in the blanks" exercises. You can either download the script without the solutions (first button), or the script with the solutions. 
 
 [Download script without solutions](assets/scripts/intro-to_R_scripts_woSolutions.R){: .md-button }
 
