@@ -70,7 +70,7 @@ area
 
 # - Variable/object: A storage space in memory that has a name and can hold data.
 temp <- -5.5	# Create a variable named temp, holding value -5.5, using the 
-# assignment operator
+              # assignment operator
 
 # A variable has a type (eg numeric or character), more on this later.
 
@@ -122,7 +122,7 @@ getwd()
 
 # To set the current working directory to another location, eg to where
 # you have saved the csv files we have provided for this course:
-setwd("/Users/tania/Dropbox/My Mac (pc-10.home)/Documents/BCF/courses/intro_to_R/intro-to-R/docs/assets/data/course_datasets/") 
+setwd("/Intro_R/course_datasets/") 
 # ! Change to the folder organization you have on your computer!
 # If the location of your working directory should be different from where your 
 # script is saved, you need to set the working directory every time you close
@@ -174,7 +174,6 @@ library(DESeq2)
 library(MASS)  
 library(ggplot2)
 
-# Solution: 
 
 
 ### ---- Session Information
@@ -199,7 +198,7 @@ packageVersion("stringi")
 
 # incomplete statement (+) (in the console, will wait), or Esc
 # 1 + 1 +
-
+  
 
 ### Part 2
 ###################################
@@ -296,7 +295,6 @@ round(x=2.011, digits=2) # rounding to 2 digits after the decimal point
 # Display the content of x
 # Calculate the logarithm in base 2 of x. Hint: use the log() function
 
-# Solution:
 
 
 # More common object classes/types
@@ -398,7 +396,7 @@ mean(x) # proportion of TRUE
 # and use the concatenation as an argument in a function
 # Hint 2: what could be the name of a function that calculates the mean?
 
-# Solution:
+
 
 
 ##############################
@@ -720,10 +718,11 @@ subset(clinical_data, Sex=="male" & (Age > 75 | Age < 60))
 # data frame:
 grade <- c(NA,"IV",NA,"III",NA,NA,"IV","I","III","I","III","IV",NA,
            NA,"III","II","II",NA,"II",NA,NA, NA,"IV","II","III",NA,NA,  
-           NA,NA,"I" ) # create new vector
-length(grade) # 30
+           NA,NA ) # create new vector
+length(grade) # 29
 
-clinical_data_mod <- cbind(clinical_data_updated, grade) # bind by column
+#clinical_data_mod <- cbind(clinical_data_updated, grade) # bind by column
+clinical_data_mod <- cbind(clinical_data, grade) # bind by column
 
 # 2. Use the $ sign with a new column name, and use the assignment operator to 
 # create the new column:
@@ -805,7 +804,6 @@ tail(clinical_data_updated)
 # only of Cancer patients
 
 
-# Solution:
 
 
 ########################
@@ -839,8 +837,11 @@ write.table(clinical_data_updated,
             row.names=FALSE)
 
 
+#############
+### Part 3  #
+#############
 
-### Part 3
+
 ## Plotting
 # Two main options are available within R for plotting. 
 # Base R plotting functions from the graphics package (comes already pre-installed)
@@ -854,25 +855,31 @@ plot(x,y) # equivalent to plot(x, y, type="p")
 plot(x, y, type="l", col="red",  lwd=3) # this gives a continuous line, of width 3
 plot(x, y, type="p", col="cornflowerblue",  pch=17) # this gives blue triangles
 abline(a=0, b=1) # adding a continuous line with intercept a=0 and slope b=1 
+abline(h=3) # adding a horizontal  line with intercept y=3
 
 # You will see the hist() function, as well as other base functions, later in
 # the statistics section
+
+#############
+# ggplot2   #
+#############
 
 # In omics data analysis (eg bulk or single-cell RNAseq data analysis), we more 
 # routinely use ggplot2, which has to be installed.
 # Using ggplot2 allows you to obtain more customizable plots, and there
 # are more plot options than with base R, eg violin plots. 
 
+# Let's clear our Environment first:
+rm(list = ls())
+
 install.packages("ggplot2")
 library(ggplot2)
 
 # ggplot2 requires the data to be formatted in data frames!
 
-# Let's clear our Environment first:
-rm(list = ls())
 
 # Using the data from Tsoi et al., let's explore the expression of genes between 
-# two subtypes of melanoma cell lines ("Undifferentiated" and "Melanocytic")
+# subtypes of melanoma cell lines
 # The genes to be compared are:
 # SOX10 (reported as being differentially expressed between subtypes of melanoma)
 # TMEM9 (not reported as differentially expressed)
@@ -880,27 +887,35 @@ rm(list = ls())
 # Read in the metadata of tumor cell lines (comes from the paper's supplementary
 # files)
 metadata <- read.csv("1-s2.0-S1535610818301223-mmc2.csv", 
-                     header = TRUE )
+  header = TRUE )
 
 # Let's check the Subtypes available
 table(metadata$Subtype)
 
 # Convert Subtype to a factor (important for plotting order)
 metadata$Subtype <- factor(metadata$Subtype, 
-                           levels = c("Undifferentiated", "Neural crest like","Transitory", "Melanocytic"))
+            levels = c("Undifferentiated", "Neural crest like","Transitory", "Melanocytic"))
 class(metadata$Subtype)
 
 # read in the expression data generated for each cell line:
 expression_data <- read.table("example_gene_expression_03102024.txt",
                               header=T)
 # Explore the data frame!
+expression_data[1:5, 1:5]
 
 # Add rownames to the metadata, based on the column "Gene"
 rownames(expression_data) <- expression_data$Gene
+expression_data[1:5, 1:5]
 
 # Remove the column "Gene"
 expression_data$Gene <- NULL
+expression_data[1:5, 1:5]
+
+# convert to a matrix
 expression_data <- as.matrix(expression_data)
+
+# are all values numeric?
+is.numeric(expression_data) # TRUE
 
 # Common plots in biological sciences show continuous data grouped by 
 # categorical variables.
@@ -909,41 +924,43 @@ expression_data <- as.matrix(expression_data)
 # requires a single data frame as input.
 # We need to combine the continuous data with the categorical data into a 
 # single data frame.
+
 # We need to make sure the categorical df and the continuous gene expression
-# df contain the same samples in the same order!
+# df contain the same samples !
+metadata$Cell.Line %in% colnames(expression_data)
+table(metadata$Cell.Line %in% colnames(expression_data)) # All are TRUE
+
 
 # We create a new column in the metadata that contains the gene expression
-# value we are interested in, in the same order as the samples are organized
+# values we are interested in, in the same order as the samples are organized
 # in the metadata object.
-
-# Get a vector of sample names that are present in both objects:
-common_samples <- intersect(metadata$Cell.Line, colnames(expression_data))
 
 # Add expression of TMEM9 and SOX10 to the metadata df, extracting the column names
 # that correspond to the metadata$Cell.Line
-# It has to be a numeric vector! 
-class(expression_data["TMEM9", metadata$Cell.Line])
 metadata$TMEM9 <- expression_data["TMEM9", metadata$Cell.Line]
 metadata$SOX10 <- expression_data["SOX10", metadata$Cell.Line]
 str(metadata) # check the format
 
-# We create a basic boxplot that indicates the gene expression (y axis) per subtype
-# (x axis)
-ggplot(metadata, # the data frame that contains the values to plot
-       aes(x = Subtype, # what will be on the x axis
-           y = TMEM9, # what will be on the y axis
-           color = Subtype)) + # how to group the y values
-  geom_boxplot()  # additional layer to choose a default boxplot
 
-# As you can see, we obtain a boxplot with some default colors
-# and even a legend!
-
-# We can also create a scatter plot of one gene versus the other
+# We create a basic scatterplot that associates the gene expressions of TMEM9 (x axis) and SOX10 (x axis) and colors by subtype
+?ggplot
 ggplot(metadata, # the data frame that contains the values to plot
        aes(x = TMEM9, # what will be on the x axis
            y = SOX10, # what will be on the y axis
            color = Subtype)) + # how to group the y values
   geom_point()  # additional layer to choose a default scatter plot
+
+# As you can see, we obtain a scatterplot with some default colors
+# and even a legend!
+
+
+# We create a basic boxplot that indicates the expression of SOX10 (y axis) per subtype (x axis)
+ggplot(metadata, # the data frame that contains the values to plot
+              aes(x = Subtype, # what will be on the x axis
+                  y = SOX10, # what will be on the y axis
+                  color = Subtype)) + # how to group the y values
+  geom_boxplot()  # additional layer to choose a default boxplot
+
 
 # Let's do some additional customization of a boxplot of SOX10
 ggplot(metadata, # the data frame that contains the values to plot
@@ -976,11 +993,11 @@ ggplot(metadata, # the data frame that contains the values to plot
   ggtitle("SOX10") + # add a title
   theme_bw() # black/white look of plot
 
-# Let's pick a manual color set:
+# Let's pick a manual color set and change the orientation of the tick labels
 ggplot(metadata, # the data frame that contains the values to plot
-       aes(x = Subtype, # what will be on the x axis
-           y = SOX10, # what will be on the y axis
-           fill = Subtype)) + # how to group the y values 
+         aes(x = Subtype, # what will be on the x axis
+             y = SOX10, # what will be on the y axis
+             fill = Subtype)) + # how to group the y values 
   geom_boxplot() + 
   scale_fill_manual(values=c("cornflowerblue", "coral", "purple", "lightgreen")) +
   xlab("") + # leave the x-axis name empty
@@ -988,8 +1005,8 @@ ggplot(metadata, # the data frame that contains the values to plot
   ggtitle("SOX10") +
   theme_bw()  + # black/white look of plot
   theme(legend.position = "none", axis.text.x= element_text(angle = 90)) # we
-# add the theme() function to remove the legend and turn the x axis tick labels
-
+  # add the theme() function to remove the legend and turn the x axis tick labels
+  
 # Finally, we can easily separate the boxplot according to an
 # additional categorical factor.
 # We use the same plot as above:
@@ -1015,9 +1032,9 @@ ggplot(metadata, # the data frame that contains the values to plot
 color <- c("cornflowerblue", "coral", "purple", "lightgreen")
 
 p1 <- ggplot(metadata, 
-             aes(x = Subtype, 
-                 y = SOX10, 
-                 fill = Subtype)) + 
+         aes(x = Subtype, 
+             y = SOX10, 
+             fill = Subtype)) + 
   geom_boxplot() + 
   scale_fill_manual(values=color) + # use our colors of choice
   xlab("") + 
@@ -1034,7 +1051,7 @@ p2 <- ggplot(data=metadata, aes(x=TMEM9, y=SOX10, color=Subtype)) +
   xlab("TMEM9 (FPKM)") + ylab("SOX10 (FPKM)") +
   theme_bw() 
 
-# install.packages("cowplot")
+install.packages("cowplot")
 library(cowplot)
 # we can adapt the relative width of each plot, making one wider as the other:
 plot_grid(p1, p2, nrow=1, rel_widths = c(1, 2))
@@ -1076,7 +1093,7 @@ dev.off()
 # Let's practice.      #
 ########################
 
-# With this code, we created a scatter plot one gene versus the other
+# With this code, we created a scatter plot of one gene versus the other
 ggplot(metadata, # the data frame that contains the values to plot
        aes(x = TMEM9, # what will be on the x axis
            y = SOX10, # what will be on the y axis
@@ -1084,14 +1101,13 @@ ggplot(metadata, # the data frame that contains the values to plot
   geom_point()  # additional layer to choose a default scatter plot
 
 # Can you customize it to:
-# Add a title of your choice
-# Change it to a black/white theme
-# Match to the paper's color scheme which is similar to what we have used 
+# - Add a title of your choice
+# - Change it to a black/white theme
+# - Match to the paper's color scheme which is similar to what we have used 
 # for the boxplot.
-# Hint: the layer is called scale_color_manual() and the color names are:
+# Hint for the color: the layer is called scale_color_manual() and the color names are:
 # "cornflowerblue", "coral", "purple", "lightgreen"
 
-# Solution 
 
 
 
@@ -1121,7 +1137,7 @@ rm(list = ls())
 
 # Read in the metadata (same as in the plotting section!)
 metadata <- read.csv("1-s2.0-S1535610818301223-mmc2.csv", 
-                     header = TRUE )
+  header = TRUE )
 
 # lets check the subtypes
 table(metadata$Subtype)
@@ -1169,7 +1185,7 @@ hist(TMEM9_expression_Melanocytic, # continuous values to be plotted on the hist
 # Quantile-Quantile Plots - Melanocytic
 qqnorm(TMEM9_expression_Melanocytic) # this function uses base graphics functions!
 qqline(TMEM9_expression_Melanocytic) # the QQ line as added on top of the 
-# already created plot!
+                                     # already created plot!
 
 # Shapiro-Wilk test of normality - Melanocytic
 shapiro.test(TMEM9_expression_Melanocytic)
@@ -1264,7 +1280,7 @@ library(ggpubr)
 ggplot(metadata.sub, aes(x=Subtype, y=TMEM9, fill=Subtype)) +
   geom_boxplot() +
   stat_compare_means(method = "t.test") + # this function comes from the
-  # ggpubr package
+                                          # ggpubr package
   ylab("FPKM") +
   ggtitle("TMEM9") 
 
@@ -1354,7 +1370,7 @@ ggplot(metadata.sub, aes(x=Subtype, y=SOX10, color=Subtype)) +
 # within each group.
 
 
-# Solution:
+
 
 
 #########################
@@ -1580,8 +1596,7 @@ summary(my_model)
 # Check assumptions of the model graphically
 
 
-# Solution:
 
-
+sessionInfo()
 # R version 4.3.3 (2024-02-29) 
 # ...

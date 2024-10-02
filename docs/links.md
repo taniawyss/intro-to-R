@@ -14,7 +14,10 @@ It includes more on statistics on the second day.
 
 ## SIB's Introduction to Statistics with R - 3/4-day course
 
-For R beginners:
+The SIB course *Introduction to statistics with R* is designed for R beginners and 
+introduces hypothesis testing, multiple testing correction, linear models, correlation and regression, and principal component analysis.
+
+Find the R code on the course website
 
 [https://sib-swiss.github.io/Introduction-to-statistics-with-R/](https://sib-swiss.github.io/Introduction-to-statistics-with-R/)
 
